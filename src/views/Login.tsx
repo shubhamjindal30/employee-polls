@@ -1,11 +1,8 @@
 import React from 'react';
+import { Typography } from '@material-ui/core';
 
 const Login: React.FunctionComponent = () => {
-  return (
-    <div>
-      <p>Login page.</p>
-    </div>
-  );
+  return <Typography>Login page.</Typography>;
 };
 
 export default Login;

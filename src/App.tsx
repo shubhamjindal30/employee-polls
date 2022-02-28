@@ -1,7 +1,14 @@
+import { ThemeProvider } from '@material-ui/core';
+
+import { theme } from './constants/theme';
 import Routes from './routes';
 
-function App() {
-  return <Routes />
-}
+const App = () => {
+  return (
+    <ThemeProvider theme={theme}>
+      <Routes />
+    </ThemeProvider>
+  );
+};
 
 export default App;
