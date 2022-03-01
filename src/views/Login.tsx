@@ -17,15 +17,15 @@ import { withRouter } from 'react-router-dom';
 const Login: React.FunctionComponent = () => {
   const classes = useStyles();
 
-  const [email, setEmail] = useState('user1@test.com');
+  const [username, setUsername] = useState('user1@test.com');
   const [password] = useState('');
 
-  const handleEmailChange = (
+  const handleUsernameChange = (
     e: React.ChangeEvent<{
       name?: string | undefined;
       value: unknown;
     }>
-  ) => setEmail(e.target.value as string);
+  ) => setUsername(e.target.value as string);
 
   const handleLogin = () => {};
   return (
@@ -36,14 +36,14 @@ const Login: React.FunctionComponent = () => {
             <Typography className={classes.heading} variant="h5">
               Sign in
             </Typography>
-            <FormControl className={classes.emailInput} variant='outlined' fullWidth>
-              <InputLabel id="email-select-label">Age</InputLabel>
+            <FormControl className={classes.usernameInput} variant='outlined' fullWidth>
+              <InputLabel id="username-select-label">Username</InputLabel>
               <Select
-                labelId="email-select-label"
-                id="email-select"
-                value={email}
-                label="Email"
-                onChange={handleEmailChange}
+                labelId="username-select-label"
+                id="username-select"
+                value={username}
+                label="Username"
+                onChange={handleUsernameChange}
               >
                 <MenuItem value='user1@test.com'>user1@test.com</MenuItem>
                 <MenuItem value='user2@test.com'>user2@test.com</MenuItem>
@@ -94,7 +94,7 @@ const useStyles = makeStyles(() => ({
   heading: {
     fontWeight: 'bold'
   },
-  emailInput: {
+  usernameInput: {
     marginTop: 30
   },
   passwordInput: {
