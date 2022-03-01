@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import {
   Button,
   Container,
+  FormControl,
   Grid,
+  InputLabel,
   makeStyles,
+  MenuItem,
   Paper,
+  Select,
   TextField,
   Typography
 } from '@material-ui/core';
@@ -13,11 +17,15 @@ import { withRouter } from 'react-router-dom';
 const Login: React.FunctionComponent = () => {
   const classes = useStyles();
 
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('user1@test.com');
   const [password] = useState('');
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setEmail(e.currentTarget.value);
+  const handleEmailChange = (
+    e: React.ChangeEvent<{
+      name?: string | undefined;
+      value: unknown;
+    }>
+  ) => setEmail(e.target.value as string);
 
   const handleLogin = () => {};
   return (
@@ -28,16 +36,19 @@ const Login: React.FunctionComponent = () => {
             <Typography className={classes.heading} variant="h5">
               Sign in
             </Typography>
-            <TextField
-              className={classes.emailInput}
-              required
-              fullWidth
-              variant="outlined"
-              label="Email"
-              value={email}
-              autoFocus
-              onChange={handleEmailChange}
-            />
+            <FormControl className={classes.emailInput} variant='outlined' fullWidth>
+              <InputLabel id="email-select-label">Age</InputLabel>
+              <Select
+                labelId="email-select-label"
+                id="email-select"
+                value={email}
+                label="Email"
+                onChange={handleEmailChange}
+              >
+                <MenuItem value='user1@test.com'>user1@test.com</MenuItem>
+                <MenuItem value='user2@test.com'>user2@test.com</MenuItem>
+              </Select>
+            </FormControl>
             <TextField
               className={classes.passwordInput}
               required
