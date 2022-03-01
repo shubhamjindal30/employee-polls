@@ -14,13 +14,10 @@ const Login: React.FunctionComponent = () => {
   const classes = useStyles();
 
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [password] = useState('');
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setEmail(e.currentTarget.value);
-
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setPassword(e.currentTarget.value);
 
   const handleLogin = () => {};
   return (
@@ -49,7 +46,7 @@ const Login: React.FunctionComponent = () => {
               label="Password"
               type="password"
               value={password}
-              onChange={handlePasswordChange}
+              disabled
             />
             <Button
               className={classes.loginBtn}
