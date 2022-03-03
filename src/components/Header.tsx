@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { AppBar, Box, Button, Typography, makeStyles } from '@material-ui/core';
 
@@ -22,12 +21,6 @@ const Header = () => {
   const history = useHistory();
   const location = useLocation();
 
-  const [selectedRoute, setSelectedRoute] = useState(location.pathname);
-
-  useEffect(() => {
-    setSelectedRoute(location.pathname);
-  }, [location]);
-
   return (
     <AppBar className={classes.appbar}>
       <Box>
@@ -35,7 +28,7 @@ const Header = () => {
           <Button
             key={route.route}
             className={classes.button}
-            style={{ borderBottom: selectedRoute === route.route ? '2px solid #fff' : '' }}
+            style={{ borderBottom: location.pathname === route.route ? '2px solid #fff' : '2px solid transparent' }}
             onClick={() => history.push(route.route)}
           >
             {route.title}
