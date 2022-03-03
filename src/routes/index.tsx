@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
+import Header from '../components/Header';
+import { RootState } from '../store';
 import { getUsers } from '../store/users/actions';
-import { Login } from '../views';
+import { Home, Login } from '../views';
 
 const Routes: React.FunctionComponent = () => {
   const dispatch = useDispatch();
+
+  const authUser = useSelector((state: RootState) => state.auth.authUser);
 
   useEffect(() => {
     dispatch(getUsers());
@@ -14,8 +18,13 @@ const Routes: React.FunctionComponent = () => {
 
   return (
     <BrowserRouter>
+      {authUser && <Header />}
       <Switch>
-        <Route exact path="/" render={() => <Login />} />
+        {!authUser ? (
+          <Route path="*" render={() => <Login />} />
+        ) : (
+          [<Route exact path="/" key="/" render={() => <Home />} />]
+        )}
       </Switch>
     </BrowserRouter>
   );

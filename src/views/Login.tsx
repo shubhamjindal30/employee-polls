@@ -13,12 +13,14 @@ import {
   Typography
 } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '../store';
 import { User } from '../store/users/types';
+import { signIn } from '../store/auth/actions';
 
 const Login: React.FunctionComponent = () => {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const userObj = useSelector((state: RootState) => state.user.users);
 
@@ -37,7 +39,12 @@ const Login: React.FunctionComponent = () => {
     }>
   ) => setSelectedUser(userObj[e.target.value as string]);
 
-  const handleLogin = () => {};
+  const handleLogin = () => {
+    if (selectedUser) {
+      const { id: username, password } = selectedUser;
+      dispatch(signIn({ username, password }));
+    }
+  };
   return (
     <div className={classes.container}>
       <Container maxWidth="xs">
