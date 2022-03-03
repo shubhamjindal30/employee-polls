@@ -12,13 +12,17 @@ export interface User {
   questions: string[];
 }
 
+export interface UsersObj {
+  [k: string]: User;
+}
+
 export interface GetUsersAction {
   type: typeof GET_USERS;
 }
 
 export interface SetUsersAction {
   type: typeof SET_USERS;
-  payload: User[];
+  payload: UsersObj;
 }
 
 export type UserActionType = GetUsersAction | SetUsersAction;

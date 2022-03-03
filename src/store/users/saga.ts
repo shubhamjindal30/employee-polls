@@ -7,7 +7,7 @@ import { GET_USERS, User } from './types';
 function* handleGetUsers() {
   try {
     const response: { [k: string]: User } = yield call(_getUsers);
-    yield put(setUsers(Object.values(response)));
+    yield put(setUsers(response));
   } catch (error) {
     console.log(`Error in handleGetUsers: ${error}`);
   }

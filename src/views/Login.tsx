@@ -20,20 +20,22 @@ import { User } from '../store/users/types';
 
 const Login: React.FunctionComponent = () => {
   const classes = useStyles();
-  const users = useSelector((state: RootState) => state.user.users);
+  const userObj = useSelector((state: RootState) => state.user.users);
 
-  const [selectedUser, setSelectedUser] = useState<User | undefined>(users[0]);
+  const [users, setUsers] = useState<User[]>(Object.values(userObj));
+  const [selectedUser, setSelectedUser] = useState<User | undefined>(Object.values(userObj)[0]);
 
   useEffect(() => {
-    setSelectedUser(users[0]);
-  }, [users]);
+    setUsers(Object.values(userObj));
+    setSelectedUser(Object.values(userObj)[0]);
+  }, [userObj]);
 
   const handleUserChange = (
     e: React.ChangeEvent<{
       name?: string | undefined;
       value: unknown;
     }>
-  ) => setSelectedUser(users.find((x) => x.id === (e.target.value as string)));
+  ) => setSelectedUser(userObj[e.target.value as string]);
 
   const handleLogin = () => {};
   return (

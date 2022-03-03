@@ -1,11 +1,11 @@
-import { UserActionType, SET_USERS, User } from './types';
+import { UserActionType, SET_USERS, UsersObj } from './types';
 
 interface UserState {
-  users: User[];
+  users: UsersObj
 }
 
 const initialState: UserState = {
-  users: []
+  users: {}
 };
 
 const reducer = (state = initialState, action: UserActionType): UserState => {
