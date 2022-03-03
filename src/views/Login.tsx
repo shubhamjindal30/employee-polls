@@ -32,7 +32,7 @@ const Login: React.FunctionComponent = () => {
     <div className={classes.container}>
       <Container maxWidth="xs">
         <Paper className={classes.paper}>
-          <Grid container direction="column" alignItems="flex-start" justify="center">
+          <Grid container direction="column" alignItems="flex-start" justifyContent="center">
             <Typography className={classes.heading} variant="h5">
               Sign in
             </Typography>
