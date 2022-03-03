@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button,
   Container,
@@ -13,19 +13,27 @@ import {
   Typography
 } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import { RootState } from '../store';
+import { User } from '../store/users/types';
 
 const Login: React.FunctionComponent = () => {
   const classes = useStyles();
+  const users = useSelector((state: RootState) => state.user.users);
 
-  const [username, setUsername] = useState('user1@test.com');
-  const [password] = useState('');
+  const [selectedUser, setSelectedUser] = useState<User | undefined>(users[0]);
 
-  const handleUsernameChange = (
+  useEffect(() => {
+    setSelectedUser(users[0]);
+  }, [users]);
+
+  const handleUserChange = (
     e: React.ChangeEvent<{
       name?: string | undefined;
       value: unknown;
     }>
-  ) => setUsername(e.target.value as string);
+  ) => setSelectedUser(users.find((x) => x.id === (e.target.value as string)));
 
   const handleLogin = () => {};
   return (
@@ -36,17 +44,21 @@ const Login: React.FunctionComponent = () => {
             <Typography className={classes.heading} variant="h5">
               Sign in
             </Typography>
-            <FormControl className={classes.usernameInput} variant='outlined' fullWidth>
-              <InputLabel id="username-select-label">Username</InputLabel>
+            <FormControl className={classes.usernameInput} variant="outlined" fullWidth>
+              <InputLabel id="username-select-label">User</InputLabel>
               <Select
                 labelId="username-select-label"
                 id="username-select"
-                value={username}
+                value={selectedUser?.id || ''}
                 label="Username"
-                onChange={handleUsernameChange}
+                onChange={handleUserChange}
               >
-                <MenuItem value='user1@test.com'>user1@test.com</MenuItem>
-                <MenuItem value='user2@test.com'>user2@test.com</MenuItem>
+                {users &&
+                  users.map((user) => (
+                    <MenuItem key={user.id} value={user.id}>
+                      {user.name}
+                    </MenuItem>
+                  ))}
               </Select>
             </FormControl>
             <TextField
@@ -56,7 +68,7 @@ const Login: React.FunctionComponent = () => {
               variant="outlined"
               label="Password"
               type="password"
-              value={password}
+              value={selectedUser?.password || ''}
               disabled
             />
             <Button
