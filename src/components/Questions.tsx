@@ -18,31 +18,28 @@ const Questions: React.FunctionComponent<QuestionsProps> = ({ title, questions }
       <Grid className={classes.headingContainer} item>
         <Typography variant="h6">{title}</Typography>
       </Grid>
-      <Grid
-        className={classes.questionContainer}
-        item
-        container
-        justifyContent="space-evenly"
-      >
-        {questions.map((question) => (
-          <Grid key={question.id} className={classes.questionCard} item  sm={3}>
-            <Typography className={classes.authorText} variant="body1">
-              {question.author}
-            </Typography>
-            <Typography variant="caption" color="textSecondary">
-              {moment(question.timestamp).format('h:mm A | DD/MM/YYYY')}
-            </Typography>
-            <Divider className={classes.divider} />
-            <Button
-              variant="contained"
-              color="primary"
-              fullWidth
-              onClick={() => history.push(`/questions/${question.id}`)}
-            >
-              Show
-            </Button>
-          </Grid>
-        ))}
+      <Grid className={classes.questionContainer} item container justifyContent="space-evenly">
+        {questions
+          .sort((x, y) => y.timestamp - x.timestamp)
+          .map((question) => (
+            <Grid key={question.id} className={classes.questionCard} item sm={3}>
+              <Typography className={classes.authorText} variant="body1">
+                {question.author}
+              </Typography>
+              <Typography variant="caption" color="textSecondary">
+                {moment(question.timestamp).format('h:mm A | DD/MM/YYYY')}
+              </Typography>
+              <Divider className={classes.divider} />
+              <Button
+                variant="contained"
+                color="primary"
+                fullWidth
+                onClick={() => history.push(`/questions/${question.id}`)}
+              >
+                Show
+              </Button>
+            </Grid>
+          ))}
       </Grid>
     </Grid>
   );
