@@ -6,7 +6,7 @@ import Header from '../components/Header';
 import { RootState } from '../store';
 import { getQuestions } from '../store/questions/actions';
 import { getUsers } from '../store/users/actions';
-import { Home, Login } from '../views';
+import { Home, Login, PageNotFound } from '../views';
 
 const Routes: React.FunctionComponent = () => {
   const dispatch = useDispatch();
@@ -25,7 +25,10 @@ const Routes: React.FunctionComponent = () => {
         {!authUser ? (
           <Route path="*" render={() => <Login />} />
         ) : (
-          [<Route exact path="/" key="/" render={() => <Home />} />]
+          [
+            <Route exact path="/" key="/" render={() => <Home />} />,
+            <Route path="*" key="*" render={() => <PageNotFound />} />
+          ]
         )}
       </Switch>
     </BrowserRouter>
