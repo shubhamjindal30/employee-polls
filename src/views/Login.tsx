@@ -12,7 +12,7 @@ import {
   TextField,
   Typography
 } from '@material-ui/core';
-import { withRouter } from 'react-router-dom';
+import { useLocation, useHistory, withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '../store';
@@ -21,7 +21,10 @@ import { signIn } from '../store/auth/actions';
 
 const Login: React.FunctionComponent = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const history = useHistory();
   const classes = useStyles();
+  
   const userObj = useSelector((state: RootState) => state.user.users);
 
   const [users, setUsers] = useState<User[]>(Object.values(userObj));
@@ -43,6 +46,7 @@ const Login: React.FunctionComponent = () => {
     if (selectedUser) {
       const { id: username, password } = selectedUser;
       dispatch(signIn({ username, password }));
+      history.replace(location.pathname);
     }
   };
   return (
