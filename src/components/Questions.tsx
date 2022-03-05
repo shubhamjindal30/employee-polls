@@ -54,7 +54,8 @@ export default Questions;
 const useStyles = makeStyles({
   container: {
     border: '1px solid lightgray',
-    borderRadius: 5
+    borderRadius: 5,
+    marginBottom: 20
   },
   headingContainer: {
     padding: 10,
