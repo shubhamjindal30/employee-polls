@@ -28,7 +28,7 @@ const Routes: React.FunctionComponent = () => {
           [
             <Route exact path="/" key="/" render={() => <Home />} />,
             <Route exact path="/questions/:qid" key="/questions/:qid" render={() => <QuestionDetails />} />,
-            <Route exact path="/new" key="/new" render={() => <NewQuestion />} />,
+            <Route exact path="/add" key="/add" render={() => <NewQuestion />} />,
             <Route path="*" key="*" render={() => <PageNotFound />} />
           ]
         )}

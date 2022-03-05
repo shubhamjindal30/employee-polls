@@ -15,7 +15,7 @@ const routes = [
     title: 'Leaderboard'
   },
   {
-    route: '/new',
+    route: '/add',
     title: 'New'
   }
 ];
