@@ -5,7 +5,7 @@ export interface User {
   id: string;
   password: string;
   name: string;
-  avatarUrl: string;
+  avatarURL: string;
   answers: {
     [k: string]: string;
   };
