@@ -1,6 +1,7 @@
 export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const SET_QUESTIONS = 'SET_QUESTIONS';
 export const SAVE_QUESTION = 'SAVE_QUESTION';
+export const SET_QUESTION = 'SET_QUESTION';
 
 export interface Question {
   id: string;
@@ -34,9 +35,14 @@ export interface SetQuestionsAction {
   payload: QuestionsObj;
 }
 
+export interface SetQuestionAction {
+  type: typeof SET_QUESTION;
+  payload: Question;
+}
+
 export interface SaveQuestionAction {
   type: typeof SAVE_QUESTION,
   payload: ISaveQuestion
 }
 
-export type QuestionActionType = GetQuestionsAction | SetQuestionsAction | SaveQuestionAction;
+export type QuestionActionType = GetQuestionsAction | SetQuestionsAction | SaveQuestionAction | SetQuestionAction;

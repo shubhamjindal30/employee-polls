@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { useHistory, withRouter } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Button, Container, makeStyles, TextField, Typography } from '@material-ui/core';
 
@@ -7,6 +7,7 @@ import { saveQuestion } from '../store/questions/actions';
 
 const NewPoll = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const classes = useStyles();
 
   const [firstOption, setFirstOption] = useState('');
@@ -33,9 +34,8 @@ const NewPoll = () => {
     }
 
     dispatch(saveQuestion({ optionOneText, optionTwoText }));
-    
-    setFirstOption('');
-    setSecondOption('');
+
+    history.push('/');
   };
 
   return (

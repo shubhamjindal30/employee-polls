@@ -1,6 +1,6 @@
 import { all, call, select, put, takeLatest } from 'redux-saga/effects';
 
-import { getQuestions, setQuestions } from './actions';
+import { setQuestions, setQuestion } from './actions';
 import { _getQuestions, _saveQuestion } from '../_DATA';
 import { GET_QUESTIONS, SAVE_QUESTION, QuestionsObj, SaveQuestionAction, Question } from './types';
 import { getAuthUserFromState } from '../auth/selectors';
@@ -26,7 +26,7 @@ function* handleSaveQuestion(action: SaveQuestionAction) {
         author: authUser.id
       });
 
-      if (response) yield put(getQuestions());
+      if (response) yield put(setQuestion(response));
     }
   } catch (error) {
     console.log(`Error in handleSaveQuestion: ${error}`);

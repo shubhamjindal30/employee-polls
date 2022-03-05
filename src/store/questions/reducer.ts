@@ -1,7 +1,7 @@
-import { QuestionActionType, SET_QUESTIONS, QuestionsObj } from './types';
+import { QuestionActionType, SET_QUESTIONS, SET_QUESTION, QuestionsObj } from './types';
 
 interface QuestionState {
-  questions: QuestionsObj
+  questions: QuestionsObj;
 }
 
 const initialState: QuestionState = {
@@ -11,10 +11,17 @@ const initialState: QuestionState = {
 const reducer = (state = initialState, action: QuestionActionType): QuestionState => {
   switch (action.type) {
     case SET_QUESTIONS:
-      const { payload } = action;
       return {
         ...state,
-        questions: payload
+        questions: action.payload
+      };
+    case SET_QUESTION:
+      return {
+        ...state,
+        questions: {
+          ...state.questions,
+          [action.payload.id]: action.payload
+        }
       };
     default:
       return state;
