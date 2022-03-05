@@ -2,7 +2,7 @@ import { all, select, put, takeLatest } from 'redux-saga/effects';
 
 import { setAuthUser } from './actions';
 import { SIGN_IN, SignInAction, SIGN_OUT } from './types';
-import { getUsersFromState } from './selectors';
+import { getUsersFromState } from '../users/selectors';
 import { User } from '../users/types';
 
 function* handleSignIn(action: SignInAction) {
