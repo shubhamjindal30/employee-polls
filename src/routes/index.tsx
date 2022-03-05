@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Header from '../components/Header';
 import { RootState } from '../store';
+import { getQuestions } from '../store/questions/actions';
 import { getUsers } from '../store/users/actions';
 import { Home, Login } from '../views';
 
@@ -14,6 +15,7 @@ const Routes: React.FunctionComponent = () => {
 
   useEffect(() => {
     dispatch(getUsers());
+    dispatch(getQuestions());
   }, [dispatch]);
 
   return (
