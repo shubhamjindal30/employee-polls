@@ -23,10 +23,9 @@ const Questions: React.FunctionComponent<QuestionsProps> = ({ title, questions }
         item
         container
         justifyContent="space-evenly"
-        alignItems="stretch"
       >
         {questions.map((question) => (
-          <Grid key={question.id} className={classes.questionCard} xs={3}>
+          <Grid key={question.id} className={classes.questionCard} item  sm={3}>
             <Typography className={classes.authorText} variant="body1">
               {question.author}
             </Typography>
@@ -66,8 +65,7 @@ const useStyles = makeStyles({
     padding: 15
   },
   questionCard: {
-    marginTop: 10,
-    marginBottom: 10,
+    margin: 10,
     padding: 10,
     paddingTop: 15,
     textAlign: 'center',
