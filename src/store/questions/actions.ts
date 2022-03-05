@@ -1,7 +1,13 @@
-import { GET_QUESTIONS, SET_QUESTIONS, QuestionsObj, GetQuestionsAction, SetQuestionsAction } from './types';
+import { GET_QUESTIONS, SET_QUESTIONS, SAVE_QUESTION, QuestionsObj, ISaveQuestion, GetQuestionsAction, SetQuestionsAction, SaveQuestionAction } from './types';
 
 export const getQuestions = (): GetQuestionsAction => ({ type: GET_QUESTIONS });
-export const setQuestions = (users: QuestionsObj): SetQuestionsAction => ({
+
+export const setQuestions = (questions: QuestionsObj): SetQuestionsAction => ({
   type: SET_QUESTIONS,
-  payload: users
+  payload: questions
+});
+
+export const saveQuestion = (question: ISaveQuestion): SaveQuestionAction => ({
+  type: SAVE_QUESTION,
+  payload: question
 });

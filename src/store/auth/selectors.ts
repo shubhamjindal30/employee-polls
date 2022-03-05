@@ -1,3 +1,3 @@
 import { RootState } from "..";
 
-export const getUsersFromState = (state: RootState) => state.user.users;
+export const getAuthUserFromState = (state: RootState) => state.auth.authUser;
