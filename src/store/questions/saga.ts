@@ -4,7 +4,10 @@ import { setQuestions, setQuestion } from './actions';
 import { _getQuestions, _saveQuestion } from '../_DATA';
 import { GET_QUESTIONS, SAVE_QUESTION, QuestionsObj, SaveQuestionAction, Question } from './types';
 import { getAuthUserFromState } from '../auth/selectors';
-import { User } from '../users/types';
+import { User, UsersObj } from '../users/types';
+import { getUsersFromState } from '../users/selectors';
+import { setAuthUser } from '../auth/actions';
+import { setUsers } from '../users/actions';
 
 function* handleGetQuestions() {
   try {
@@ -26,7 +29,22 @@ function* handleSaveQuestion(action: SaveQuestionAction) {
         author: authUser.id
       });
 
-      if (response) yield put(setQuestion(response));
+      if (response) {
+        yield put(setQuestion(response));
+        const users: UsersObj = yield select(getUsersFromState);
+        const updatedUser: User = {
+          ...authUser,
+          questions: authUser.questions.concat(response.id)
+        };
+
+        yield put(setAuthUser(updatedUser));
+        yield put(
+          setUsers({
+            ...users,
+            [authUser.id]: updatedUser
+          })
+        );
+      }
     }
   } catch (error) {
     console.log(`Error in handleSaveQuestion: ${error}`);
