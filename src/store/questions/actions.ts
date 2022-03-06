@@ -3,13 +3,16 @@ import {
   SET_QUESTIONS,
   SAVE_QUESTION,
   SET_QUESTION,
+  SAVE_ANSWER,
   QuestionsObj,
   Question,
   ISaveQuestion,
+  ISaveAnswer,
   GetQuestionsAction,
   SetQuestionsAction,
   SaveQuestionAction,
-  SetQuestionAction
+  SetQuestionAction,
+  SaveAnswerAction
 } from './types';
 
 export const getQuestions = (): GetQuestionsAction => ({ type: GET_QUESTIONS });
@@ -27,4 +30,9 @@ export const saveQuestion = (question: ISaveQuestion): SaveQuestionAction => ({
 export const setQuestion = (question: Question): SetQuestionAction => ({
   type: SET_QUESTION,
   payload: question
+});
+
+export const saveAnswer = (answer: ISaveAnswer): SaveAnswerAction => ({
+  type: SAVE_ANSWER,
+  payload: answer
 });

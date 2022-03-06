@@ -1,20 +1,29 @@
+import { useDispatch } from 'react-redux';
 import { Grid, Typography, Button, makeStyles } from '@material-ui/core';
+
+import { saveAnswer } from '../../store/questions/actions';
 
 export type Option = 'optionOne' | 'optionTwo';
 export type Answer = Option | undefined;
 
 interface OptionProps {
   id: Option;
+  qid: string;
   option: string;
   answer: Answer;
   votes: number;
   totalUsers: number;
 }
 
-export const OptionComponent = ({ id, option, answer, votes, totalUsers }: OptionProps) => {
+export const OptionComponent = ({ id, qid, option, answer, votes, totalUsers }: OptionProps) => {
+  const dispatch = useDispatch();
   const classes = useStyles();
 
   const isSameAnswer = answer ? (id === answer ? true : false) : null;
+
+  const handleClick = () => {
+    dispatch(saveAnswer({ qid, answer: id }));
+  };
 
   return (
     <Grid className={classes.option} item xs={12} sm={5}>
@@ -28,6 +37,7 @@ export const OptionComponent = ({ id, option, answer, votes, totalUsers }: Optio
         variant="contained"
         color="primary"
         fullWidth
+        onClick={handleClick}
       >
         {isSameAnswer ? 'You sellected this option' : 'Click'}
       </Button>

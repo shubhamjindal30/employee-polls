@@ -57,6 +57,7 @@ const QuestionDetails = () => {
       <Grid container direction="row" justifyContent="center">
         <OptionComponent
           id="optionOne"
+          qid={qid}
           option={question?.optionOne.text || ''}
           answer={authUserAnswer}
           votes={question?.optionOne.votes.length || 0}
@@ -64,6 +65,7 @@ const QuestionDetails = () => {
         />
         <OptionComponent
           id="optionTwo"
+          qid={qid}
           option={question?.optionTwo.text || ''}
           answer={authUserAnswer}
           votes={question?.optionTwo.votes.length || 0}

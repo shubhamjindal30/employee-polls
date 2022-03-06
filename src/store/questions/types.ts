@@ -2,6 +2,7 @@ export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const SET_QUESTIONS = 'SET_QUESTIONS';
 export const SAVE_QUESTION = 'SAVE_QUESTION';
 export const SET_QUESTION = 'SET_QUESTION';
+export const SAVE_ANSWER = 'SAVE_ANSWER';
 
 export interface Question {
   id: string;
@@ -26,6 +27,11 @@ export interface ISaveQuestion {
   optionTwoText: string;
 }
 
+export interface ISaveAnswer {
+  qid: string;
+  answer: string;
+}
+
 export interface GetQuestionsAction {
   type: typeof GET_QUESTIONS;
 }
@@ -41,8 +47,18 @@ export interface SetQuestionAction {
 }
 
 export interface SaveQuestionAction {
-  type: typeof SAVE_QUESTION,
-  payload: ISaveQuestion
+  type: typeof SAVE_QUESTION;
+  payload: ISaveQuestion;
 }
 
-export type QuestionActionType = GetQuestionsAction | SetQuestionsAction | SaveQuestionAction | SetQuestionAction;
+export interface SaveAnswerAction {
+  type: typeof SAVE_ANSWER;
+  payload: ISaveAnswer;
+}
+
+export type QuestionActionType =
+  | GetQuestionsAction
+  | SetQuestionsAction
+  | SaveQuestionAction
+  | SetQuestionAction
+  | SaveAnswerAction;

@@ -1,8 +1,16 @@
 import { all, call, select, put, takeLatest } from 'redux-saga/effects';
 
 import { setQuestions, setQuestion } from './actions';
-import { _getQuestions, _saveQuestion } from '../_DATA';
-import { GET_QUESTIONS, SAVE_QUESTION, QuestionsObj, SaveQuestionAction, Question } from './types';
+import { _getQuestions, _saveQuestion, _saveQuestionAnswer } from '../_DATA';
+import {
+  GET_QUESTIONS,
+  SAVE_QUESTION,
+  SAVE_ANSWER,
+  QuestionsObj,
+  SaveQuestionAction,
+  SaveAnswerAction,
+  Question
+} from './types';
 import { getAuthUserFromState } from '../auth/selectors';
 import { User, UsersObj } from '../users/types';
 import { getUsersFromState } from '../users/selectors';
@@ -51,9 +59,35 @@ function* handleSaveQuestion(action: SaveQuestionAction) {
   }
 }
 
+function* handleSaveAnswer(action: SaveAnswerAction) {
+  try {
+    const { qid, answer } = action.payload;
+    const authUser: User | null = yield select(getAuthUserFromState);
+    if (authUser) {
+      const response: { users: UsersObj; questions: QuestionsObj; } = yield call(
+        _saveQuestionAnswer,
+        {
+          authedUser: authUser.id,
+          qid,
+          answer
+        }
+      );
+
+      if (response) {
+        yield put(setAuthUser(response.users[authUser.id]));
+        yield put(setUsers(response.users));
+        yield put(setQuestions(response.questions));
+      }
+    }
+  } catch (error) {
+    console.log(`Error in handleSaveAnswer: ${error}`);
+  }
+}
+
 export function* watchQuestionRequests() {
   yield all([
     takeLatest(GET_QUESTIONS, handleGetQuestions),
-    takeLatest(SAVE_QUESTION, handleSaveQuestion)
+    takeLatest(SAVE_QUESTION, handleSaveQuestion),
+    takeLatest(SAVE_ANSWER, handleSaveAnswer)
   ]);
 }
