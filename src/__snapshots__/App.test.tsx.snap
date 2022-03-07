@@ -352,6 +352,7 @@ Object {
         </p>
         <div
           class="MuiFormControl-root MuiTextField-root makeStyles-textField-13 MuiFormControl-fullWidth"
+          data-testid="fieldOptionOne"
         >
           <div
             class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
@@ -386,6 +387,7 @@ Object {
         </p>
         <div
           class="MuiFormControl-root MuiTextField-root makeStyles-textField-13 MuiFormControl-fullWidth"
+          data-testid="fieldOptionTwo"
         >
           <div
             class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
@@ -415,6 +417,7 @@ Object {
         </div>
         <button
           class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-submitBtn-15 MuiButton-containedPrimary"
+          data-testid="submitNewQuestion"
           tabindex="0"
           type="button"
         >
@@ -451,6 +454,7 @@ Object {
       </p>
       <div
         class="MuiFormControl-root MuiTextField-root makeStyles-textField-13 MuiFormControl-fullWidth"
+        data-testid="fieldOptionOne"
       >
         <div
           class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
@@ -485,6 +489,7 @@ Object {
       </p>
       <div
         class="MuiFormControl-root MuiTextField-root makeStyles-textField-13 MuiFormControl-fullWidth"
+        data-testid="fieldOptionTwo"
       >
         <div
           class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
@@ -514,6 +519,7 @@ Object {
       </div>
       <button
         class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-submitBtn-15 MuiButton-containedPrimary"
+        data-testid="submitNewQuestion"
         tabindex="0"
         type="button"
       >

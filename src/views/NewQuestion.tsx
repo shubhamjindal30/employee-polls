@@ -49,6 +49,7 @@ const NewPoll = () => {
       </Typography>
       <TextField
         className={classes.textField}
+        data-testid='fieldOptionOne'
         fullWidth
         variant="outlined"
         placeholder="Option One"
@@ -60,6 +61,7 @@ const NewPoll = () => {
       </Typography>
       <TextField
         className={classes.textField}
+        data-testid='fieldOptionTwo'
         fullWidth
         variant="outlined"
         placeholder="Option Two"
@@ -68,6 +70,7 @@ const NewPoll = () => {
       />
       <Button
         className={classes.submitBtn}
+        data-testid="submitNewQuestion"
         variant="contained"
         color="primary"
         onClick={handleSubmit}
