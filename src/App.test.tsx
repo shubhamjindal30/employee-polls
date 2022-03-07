@@ -1,11 +1,13 @@
 // @ts-nocheck
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import store from './store';
 import { _saveQuestion, _saveQuestionAnswer } from './store/_DATA';
 import { Login, NewQuestion } from './views';
+
+jest.spyOn(window, 'alert').mockImplementation(() => {});
 
 const testUser = {
   id: 'tylermcginnis',
@@ -104,5 +106,35 @@ describe('rendered new question page', () => {
       </Provider>
     );
     expect(view).toMatchSnapshot();
+  });
+});
+
+describe('new question page', () => {
+  it('gives alert when empty form is submitted', () => {
+    render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <NewQuestion />
+        </BrowserRouter>
+      </Provider>
+    );
+    const submitButton = screen.getByTestId('submitNewQuestion');
+    submitButton.click();
+    expect(window.alert).toBeCalledWith('First option cannot be empty!');
+  });
+
+  it('gives alert when partially filled form is submitted', () => {
+    render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <NewQuestion />
+        </BrowserRouter>
+      </Provider>
+    );
+    const optionOneField = screen.getByTestId('fieldOptionOne').childNodes[0].childNodes[0];
+    fireEvent.change(optionOneField, { target: { value: 'True' } });
+    const submitButton = screen.getByTestId('submitNewQuestion');
+    submitButton.click();
+    expect(window.alert).toBeCalledWith('Second option cannot be empty!');
   });
 });
