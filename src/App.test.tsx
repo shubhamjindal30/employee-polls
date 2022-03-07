@@ -1,5 +1,11 @@
 // @ts-nocheck
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { render } from '@testing-library/react';
+
+import store from './store';
 import { _saveQuestion, _saveQuestionAnswer } from './store/_DATA';
+import { Login, NewQuestion } from './views';
 
 const testUser = {
   id: 'tylermcginnis',
@@ -72,5 +78,31 @@ describe('_saveQuestionAnswer()', () => {
     await expect(_saveQuestionAnswer(newQuestionAnswer)).rejects.toEqual(
       'Please provide authedUser, qid, and answer'
     );
+  });
+});
+
+describe('rendered login page', () => {
+  it('matches the snapshot', () => {
+    const view = render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <Login />
+        </BrowserRouter>
+      </Provider>
+    );
+    expect(view).toMatchSnapshot();
+  });
+});
+
+describe('rendered new question page', () => {
+  it('matches the snapshot', () => {
+    const view = render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <NewQuestion />
+        </BrowserRouter>
+      </Provider>
+    );
+    expect(view).toMatchSnapshot();
   });
 });
