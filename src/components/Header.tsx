@@ -1,5 +1,5 @@
 import { useHistory, useLocation } from 'react-router-dom';
-import { AppBar, Box, Button, Typography, makeStyles } from '@material-ui/core';
+import { AppBar, Box, Button, Typography, makeStyles, Avatar } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { signOut } from '../store/auth/actions';
@@ -34,7 +34,7 @@ const Header = () => {
 
   return (
     <AppBar className={classes.appbar}>
-      <Box>
+      <Box className={classes.tabsSection}>
         {routes.map((route) => (
           <Button
             key={route.route}
@@ -49,7 +49,8 @@ const Header = () => {
           </Button>
         ))}
       </Box>
-      <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+      <Box className={classes.userSection}>
+        <Avatar className={classes.avatar} alt={authUser?.name} src={authUser?.avatarURL} />
         <Typography>{authUser?.id}</Typography>
         <Button className={classes.button} onClick={handleLogout}>
           Logout
@@ -66,11 +67,27 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    height: 50
+  },
+  tabsSection: {
+    height: '100%'
   },
   button: {
     color: '#fff',
     textTransform: 'none',
-    borderRadius: 0
+    borderRadius: 0,
+    height: '100%'
+  },
+  userSection: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: '100%'
+  },
+  avatar: {
+    height: 30,
+    width: 30,
+    marginRight: 5
   }
 }));

@@ -80,7 +80,7 @@ export default withRouter(QuestionDetails);
 
 const useStyles = makeStyles({
   container: {
-    marginTop: 60,
+    marginTop: 70,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

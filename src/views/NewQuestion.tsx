@@ -82,7 +82,7 @@ export default withRouter(NewPoll);
 
 const useStyles = makeStyles({
   container: {
-    marginTop: 60,
+    marginTop: 70,
     textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center'

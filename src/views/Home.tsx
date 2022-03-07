@@ -40,6 +40,6 @@ export default withRouter(Home);
 
 const useStyles = makeStyles({
   container: {
-    marginTop: 60
+    marginTop: 70
   }
 });

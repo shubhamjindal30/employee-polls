@@ -61,7 +61,7 @@ export default withRouter(Leaderboard);
 
 const useStyles = makeStyles({
   container: {
-    marginTop: 60
+    marginTop: 70
   },
   userColumn: {
     display: 'flex',
