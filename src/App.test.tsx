@@ -5,7 +5,8 @@ import { fireEvent, render, screen } from '@testing-library/react';
 
 import store from './store';
 import { _saveQuestion, _saveQuestionAnswer } from './store/_DATA';
-import { Login, NewQuestion } from './views';
+import { Login, NewQuestion, PageNotFound } from './views';
+import { Questions } from './components';
 
 jest.spyOn(window, 'alert').mockImplementation(() => {});
 
@@ -102,6 +103,32 @@ describe('rendered new question page', () => {
       <Provider store={store}>
         <BrowserRouter>
           <NewQuestion />
+        </BrowserRouter>
+      </Provider>
+    );
+    expect(view).toMatchSnapshot();
+  });
+});
+
+describe('rendered 404 page', () => {
+  it('matches the snapshot', () => {
+    const view = render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <PageNotFound />
+        </BrowserRouter>
+      </Provider>
+    );
+    expect(view).toMatchSnapshot();
+  });
+});
+
+describe('rendered Questions component', () => {
+  it('matches the snapshot', () => {
+    const view = render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <Questions title='New Questions' questions={[testQuestion]} />
         </BrowserRouter>
       </Provider>
     );
